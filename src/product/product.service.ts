@@ -1,20 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import { Product } from 'src/interfaces/product.interface';
-
-const PREFIX = 'http://localhost:3000';
+import { InjectModel } from '@nestjs/mongoose';
+import { Product, ProductDocument } from './models/product.model';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class ProductService {
-  getAllProducts(): Product[] {
-    return [
-      {
-        id: 1,
-        name: 'Name',
-        price: 100,
-        ingredients: ['sfsf', 'sdfsf', 'asfwef'],
-        image: `${PREFIX}/file.png`,
-        rating: 5,
-      },
-    ];
-  }
+    constructor(@InjectModel(Product.name) private productModel: Model<ProductDocument>) {}
+
+    async getByName(name) {
+        return this.productModel.findOne({name})
+    }
+
+    async createProduct(product: Product) {
+        const newProduct = new this.productModel(product);
+        return newProduct.save();
+    }
 }

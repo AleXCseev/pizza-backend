@@ -16,14 +16,6 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false,
-    "paths": {
-      "@app/products": [
-        "libs/products/src"
-      ],
-      "@app/products/*": [
-        "libs/products/src/*"
-      ]
-    }
+    "noFallthroughCasesInSwitch": false
   }
 }
