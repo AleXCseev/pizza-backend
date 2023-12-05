@@ -7,7 +7,7 @@ import { Model } from 'mongoose';
 export class ProductService {
     constructor(@InjectModel(Product.name) private productModel: Model<ProductDocument>) {}
 
-    async getByName(name) {
+    async getByName(name: string) {
         return this.productModel.findOne({name})
     }
 
