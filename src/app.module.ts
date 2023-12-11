@@ -4,10 +4,18 @@ import { AppService } from './app.service';
 import { ProductModule } from './product/product.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+
+
 
 @Module({
   imports: [ 
-    MongooseModule.forRoot('mongodb://admin:admin@127.0.0.1:27017/pizzaDb?authSource=admin'), 
+    ConfigModule.forRoot(),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: getMongoConfig
+    }), 
     ProductModule, 
     UserModule],
   controllers: [AppController],
