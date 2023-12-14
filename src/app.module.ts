@@ -5,6 +5,7 @@ import { ProductModule } from './product/product.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { getMongoConfig } from './configs/mongo.config';
 
 
 
