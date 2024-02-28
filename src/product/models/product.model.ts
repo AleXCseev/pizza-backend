@@ -1,9 +1,9 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose"
-import { HydratedDocument } from "mongoose"
+import { HydratedDocument, Types } from "mongoose"
 
 export type ProductDocument = HydratedDocument<Product>;
 
-@Schema()
+@Schema({ timestamps: true })
 export class Product {
     @Prop({required: true})
     name: string
@@ -19,6 +19,9 @@ export class Product {
 
     @Prop({required: true})
     rating: number
+
+    @Prop({required: true})
+    productId: Types.ObjectId
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product)
